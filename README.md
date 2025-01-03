@@ -8,12 +8,11 @@ Get started with Rasa Pro in the browser using GitHub Codespaces.
    - Click on "Create codespace on main".
 
 2. **Set Up Environment:**
-   - In the codespace, open the `.env` file from this repo and add the required keys to that file.
+   - In the codespace, open the `.env` file from this repo and add your license key to that file.
      ```
      RASA_PRO_LICENSE='your_rasa_pro_license_key_here'
-     OPENAI_API_KEY='your_openai_api_key_here'
      ```
-   - Set these environment variables by running 
+   - Set this environment variables by running 
      ```
      source .env
      ```
