@@ -5,7 +5,7 @@ flows:
     steps:
       - action: action_show_pending_incoming_order_history
         next:
-          - if: slots.logged_in
+          - if: slots.logged_in and slots.is_incoming
             then:
               - collect: cancel_incoming_order
                 ask_before_filling: true
@@ -19,4 +19,6 @@ flows:
                   - else:
                       - action: utter_order_pending_cancelled
                         next: END
+          - if: slots.logged_in and not slots.is_incoming
+            then: END
           - else: END

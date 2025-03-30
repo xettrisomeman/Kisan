@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Text
 
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 
 
@@ -30,8 +31,10 @@ class ShowPendingPurchaseGoodHistory(Action):
                         f"Status: {res['status']}"
                     )
                     dispatcher.utter_message(text=res_msg)
+                    return [SlotSet("is_pending", True)]
             else:
                 dispatcher.utter_message(text="You have no purchases in pending.")
+                return [SlotSet("is_pending", False)]
         else:
             dispatcher.utter_message(
                 text="You have to be logged in to perform the action."

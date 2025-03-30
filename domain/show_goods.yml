@@ -15,6 +15,11 @@ slots:
     mappings:
       - type: from_llm
 
+  is_good:
+    type: bool
+    mappings:
+      - type: from_llm
+
 responses:
   utter_ask_show_select:
     - text: Do you want to select goods?

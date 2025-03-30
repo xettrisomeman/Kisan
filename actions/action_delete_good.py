@@ -18,8 +18,14 @@ class ActionDeleteGood(Action):
     ) -> List[Dict[Text, Any]]:
         try:
             idx = tracker.get_slot("which_good_to_show")
-            name = httpx.delete(DELETE_GOOD_URL, params={"idx": int(idx)}).json()
-            dispatcher.utter_message(text=f"{name['name']} has been deleted!!")
+            email = tracker.get_slot("add_user_email_login")
+            name = httpx.delete(
+                DELETE_GOOD_URL, params={"idx": int(idx), "email": email}
+            ).json()
+            if name['name'] == 'error':
+                dispatcher.utter_message(text="You cannot delete this good.")
+            else:
+                dispatcher.utter_message(text=f"{name['name']} has been deleted!!")
         except Exception as _:
             dispatcher.utter_message(text="Cannot delete good. It does not exist.")
 

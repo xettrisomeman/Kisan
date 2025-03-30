@@ -2,6 +2,7 @@ flows:
   show_history:
     description: history of what user did
     name: get history or recent activities
+    block_digressions: true
     steps:
       - noop: true
         next:

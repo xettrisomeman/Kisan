@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Text
 
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 
 from config import INCOMING_ORDER_PENDING_HISTORY
@@ -29,8 +30,10 @@ class ActionShowPendingIncomingOrderHistory(Action):
                         f"Status: {res['status']}"
                     )
                     dispatcher.utter_message(text=res_msg)
+                    return [SlotSet("is_incoming", True)]
             else:
                 dispatcher.utter_message(text="You have no incoming orders in pending.")
+                return [SlotSet("is_incoming", False)]
         else:
             dispatcher.utter_message(
                 text="You have to be logged in to perform the action."

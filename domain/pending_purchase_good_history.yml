@@ -15,6 +15,11 @@ slots:
     mappings:
       - type: from_llm
 
+  is_pending:
+    type: bool
+    mappings:
+      - type: from_llm
+
 responses:
   utter_ask_cancel_pending_order:
     - text: Do you want to cancel the order?

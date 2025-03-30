@@ -30,7 +30,7 @@ class ActionShowHistory(Action):
                 if h["name"] == "Sent Buy Order"
                 else None
                 if h["name"] == "Good Added"
-                else f"h{'good_name'} added"
+                else f"{h['good_name']} added"
                 if h["name"] == "Good Edited"
                 else f"{h['good_name']} edited."
                 if h["name"] == "Good Deleted"

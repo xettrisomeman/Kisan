@@ -57,7 +57,7 @@ GET http://localhost:8000/goods/show
 GET http://localhost:8000/goods/detail/1
 
 ###
-POST http://localhost:8000/goods/delete?idx=1
+DELETE http://localhost:8000/goods/delete?idx=1&email=johndoe@example.com
 
 
 ###

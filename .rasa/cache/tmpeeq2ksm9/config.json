@@ -1,0 +1,37 @@
+{
+  "prompt": null,
+  "prompt_template": null,
+  "user_input": null,
+  "llm": {
+    "id": "cohere_llm",
+    "models": [
+      {
+        "provider": "cohere",
+        "model": "command-r-plus-04-2024",
+        "temperatue": 0.0,
+        "timeout": 7,
+        "max_tokens": 1024
+      }
+    ]
+  },
+  "flow_retrieval": {
+    "embeddings": {
+      "id": "cohere_embedding_model",
+      "models": [
+        {
+          "provider": "cohere",
+          "model": "embed-english-light-v3.0",
+          "model_kwargs": {
+            "device": "cpu"
+          },
+          "encode_kwargs": {
+            "normalize_embedding": true
+          }
+        }
+      ]
+    },
+    "num_flows": 20,
+    "turns_to_embed": 1,
+    "should_embed_slots": true
+  }
+}

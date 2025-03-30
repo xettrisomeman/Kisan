@@ -23,10 +23,12 @@ class ActionShowListGoods(Action):
                 for idx, good in enumerate(goods, start=1):
                     msg += f"{idx}.{good['name']} by {good['farmer']['email']}\n"
                 dispatcher.utter_message(text=msg)
+                return [SlotSet("is_good", True)]
             else:
                 dispatcher.utter_message(
-                    text="There are no goods available at the moment."
+                    text="There are no goods available at the moment. Please add goods."
                 )
+                return [SlotSet("is_good", False)]
 
         except Exception as _:
             dispatcher.utter_message(

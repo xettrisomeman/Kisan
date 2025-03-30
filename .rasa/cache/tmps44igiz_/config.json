@@ -1,0 +1,32 @@
+{
+  "priority": 5,
+  "nlu_abstention_threshold": 0.9,
+  "llm": {
+    "id": "cohere_llm",
+    "models": [
+      {
+        "provider": "cohere",
+        "model": "command-r-plus-04-2024",
+        "temperatue": 0.0,
+        "timeout": 7,
+        "max_tokens": 1024
+      }
+    ]
+  },
+  "embeddings": {
+    "id": "cohere_embedding_model",
+    "models": [
+      {
+        "provider": "cohere",
+        "model": "embed-english-light-v3.0",
+        "model_kwargs": {
+          "device": "cpu"
+        },
+        "encode_kwargs": {
+          "normalize_embedding": true
+        }
+      }
+    ]
+  },
+  "prompt": "/home/artificial-stupidity/home/venv/lib/python3.9/site-packages/rasa/core/policies/intentless_prompt_template.jinja2"
+}

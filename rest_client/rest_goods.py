@@ -89,24 +89,24 @@ def edit_goods(
             good_to_change = good
             break
 
-    if good_to_change.previous_price != goods_data.price:
-        good_to_change.previous_price = goods_data.price
+    if good_to_change.price != goods_data.price:
+        good_to_change.previous_price = good_to_change.price
         good_to_change.price = goods_data.price
-    if good_to_change.quantity != goods_data.quantity:
+    elif good_to_change.quantity != goods_data.quantity:
         good_to_change.quantity = goods_data.quantity
     else:
         return good
     history = History(
         user_id=user.id,
         name="Good Edited",
-        good_name=goods_data.name,
+        good_name=good_to_change.name,
         quantity=goods_data.quantity,
         price=goods_data.price,
         # buyer_email=buyer.email,
         # seller_email=seller.email,
         created_at=datetime.utcnow(),
     )
-    user.append.histories(history)
+    user.histories.append(history)
     db.commit()
     db.add(history)
     db.refresh(good_to_change)
@@ -167,18 +167,20 @@ def delete_goods(
 ):
     user = db.scalars(select(User).where(User.email == email)).first()
     good = db.scalars(select(Goods).where(Goods.id == idx)).first()
-    history = History(
-        user_id=user.id,
-        name="Good Deleted",
-        good_name=good.name,
-        quantity=good.quantity,
-        price=good.price,
-        # buyer_email=buyer.email,
-        # seller_email=seller.email,
-        created_at=datetime.utcnow(),
-    )
-    user.append.histories(history)
-    db.add(history)
-    db.delete(good)
-    db.commit()
-    return {"name": good.name}
+    if good.farmer.email == email:
+        history = History(
+            user_id=user.id,
+            name="Good Deleted",
+            good_name=good.name,
+            quantity=good.quantity,
+            price=good.price,
+            # buyer_email=buyer.email,
+            # seller_email=seller.email,
+            created_at=datetime.utcnow(),
+        )
+        user.histories.append(history)
+        db.add(history)
+        db.delete(good)
+        db.commit()
+        return {"name": good.name}
+    return {"name": "error"}

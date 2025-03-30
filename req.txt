@@ -1,4 +1,6 @@
-fastapi
+fastapi[standard]
 dspy
 cohere
 httpx
+bcrypt
+sqlalchemy
