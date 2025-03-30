@@ -1,0 +1,26 @@
+flows:
+  delete_good:
+    description: delete a particular good
+    name: delete a good
+    steps:
+      - action: action_can_be_deleted
+        next:
+          - if: slots.can_be_deleted
+            then: user_delete_confirmation_id
+          - else: END
+
+      - id: user_delete_confirmation_id
+        collect: good_delete_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.good_delete_confirmation is true
+            then:
+              - action: action_delete_good
+              - set_slots:
+                  - which_good_to_show: null
+                next: END
+          - else:
+              - action: utter_delete_cancelled
+              - set_slots:
+                  - which_good_to_show: null
+                next: END

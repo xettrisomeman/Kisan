@@ -1,0 +1,50 @@
+flows:
+  login_user:
+    description: Login a user
+    name: Login User
+    block_digressions: true
+    persisted_slots:
+      - add_user_email_login
+    steps:
+      - action: check_logged_in
+        next:
+          - if: slots.logged_in
+            then:
+              - action: utter_already_logged_in
+                next: END
+          - else: user_login_id
+
+      - id: user_login_id
+        collect: add_user_email_login
+        description: "Email of the user"
+        next: user_password
+
+      - id: user_password
+        collect: add_user_password_login
+        description: "Password of the user"
+        next: user_login_confirmation
+
+      - id: user_login_confirmation
+        collect: user_login_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.user_login_confirmation
+            then:
+              - action: action_login_user
+                next:
+                  - if: slots.logged_in
+                    then:
+                      - action: utter_login_done
+                        next: END
+                  - else:
+                      - action: utter_login_failed
+                      - set_slots:
+                          - add_user_email_login: null
+                          - add_user_password_login: null
+                        next: END
+          - else:
+              - action: utter_login_cancelled
+              - set_slots:
+                  - add_user_email_login: null
+                  - add_user_password_login: null
+                next: END

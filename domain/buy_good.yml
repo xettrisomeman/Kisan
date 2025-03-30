@@ -1,0 +1,39 @@
+version: "3.1"
+
+actions:
+  - action_buy_good
+  - action_can_be_bought
+
+slots:
+  quantity_to_buy:
+    type: any
+    mappings:
+      - type: from_llm
+
+  good_buy_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  can_be_bought:
+    type: bool
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_good_buy_confirmation:
+    - text: Are you sure to buy the good?
+      buttons:
+        - payload: "/SetSlots(good_buy_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(good_buy_confirmation=true)"
+          title: Yes
+
+  utter_ask_quantity_to_buy:
+    - text: How many quantities you want to buy?
+
+  utter_buy_cancelled:
+    - text: Cancelled!
+
+  utter_cannot_be_bought:
+    - text: You cannot buy the good you added.

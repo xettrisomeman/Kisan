@@ -1,0 +1,22 @@
+recipe: default.v1
+language: en
+pipeline:
+  - name: SingleStepLLMCommandGenerator
+    llm:
+      model_group: cohere_llm
+    flow_retrieval:
+      embeddings:
+        model_group: cohere_embedding_model
+
+policies:
+  - name: FlowPolicy
+    llm:
+      model_group: cohere_llm
+    embeddings:
+      model_group: cohere_embedding_model
+  - name: IntentlessPolicy
+    llm:
+      model_group: cohere_llm
+    embeddings:
+      model_group: cohere_embedding_model
+assistant_id: 20250311-071649-factorial-method

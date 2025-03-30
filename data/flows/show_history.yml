@@ -1,0 +1,14 @@
+flows:
+  show_history:
+    description: history of what user did
+    name: get history or recent activities
+    steps:
+      - noop: true
+        next:
+          - if: slots.logged_in
+            then:
+              - action: action_show_history
+                next: END
+          - else:
+              - action: utter_not_logged_in
+                next: END

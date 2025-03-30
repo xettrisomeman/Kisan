@@ -1,0 +1,78 @@
+version: "3.1"
+
+actions:
+  - action_edit_good
+  - action_can_be_edited
+
+slots:
+  change_quantity_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  price_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  good_edit_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  new_price:
+    type: any
+    mappings:
+      - type: from_llm
+
+  change_quantity:
+    type: any
+    mappings:
+      - type: from_llm
+
+  good_updated:
+    type: any
+    mappings:
+      - type: from_llm
+
+  can_be_edited:
+    type: bool
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_good_edit_confirmation:
+    - text: Are you sure to edit?
+      buttons:
+        - payload: "/SetSlots(good_edit_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(good_edit_confirmation=true)"
+          title: Yes
+
+  utter_ask_price_confirmation:
+    - text: Sure you want to change price?
+      buttons:
+        - payload: "/SetSlots(price_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(price_confirmation=true)"
+          title: Yes
+
+  utter_ask_change_quantity_confirmation:
+    - text: Sure, you want to change quantity?
+      buttons:
+        - payload: "/SetSlots(change_quantity_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(change_quantity_confirmation=true)"
+          title: Yes
+
+  utter_ask_new_price:
+    - text: Write new price.
+
+  utter_ask_change_quantity:
+    - text: Write new quantity
+
+  utter_good_updated:
+    - text: Good has been updated.
+
+  utter_good_cannot_be_updated:
+    - text: There is problem with updating the good.

@@ -1,0 +1,30 @@
+version: "3.1"
+
+actions:
+  - action_show_pending_incoming_order_history
+  - action_cancel_incoming_order
+
+slots:
+  cancel_incoming_order:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  which_order_to_cancel:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_cancel_incoming_order:
+    - text: Do you want to cancel the order request?
+      buttons:
+        - payload: "/SetSlots(cancel_incoming_order=true)"
+          title: Yes, cancel
+        - payload: "/SetSlots(cancel_incoming_order=false)"
+          title: No
+  utter_ask_which_order_to_cancel:
+    - text: which order to cancel? Write ordername.
+
+  utter_order_pending_cancelled:
+    - text: Stopped order cancellation.

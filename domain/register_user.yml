@@ -1,0 +1,103 @@
+actions:
+  - register_user
+  - validate_two_password
+  - validate_password_length
+  - validate_email
+
+slots:
+  add_user_name:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_user_password_confirmation:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_user_location:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_user_interests:
+    type: text
+    mappings:
+      - type: from_llm
+
+  user_register_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  user_role:
+    type: text
+    mappings:
+      - type: from_llm
+
+  pw_validated:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  pw_validated_length:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  valid_email:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  add_user_password:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_user_email:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_user_register_confirmation:
+    - text: Are you sure to register?
+      buttons:
+        - payload: "/SetSlots(user_register_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(user_register_confirmation=true)"
+          title: Yes
+
+  utter_ask_add_user_name:
+    - text: "What is your name?"
+
+  utter_ask_add_user_location:
+    - text: "Where are you from?"
+
+  utter_ask_add_user_interests:
+    - text: "What are things you are looking for?"
+
+  utter_ask_add_user_password_confirmation:
+    - text: "Please confirm your password."
+
+  utter_register_done:
+    - text: "You are successfuly registered as {add_user_email}"
+
+  utter_register_cancelled:
+    - text: "You have cancelled the registration."
+
+  utter_user_already_exists:
+    - text: "User with the email already exists!"
+
+  utter_role_not_correct:
+    - text: "Role should be buyer or farmer."
+
+  utter_pw_not_validated:
+    - text: "The passwords do not match. Please enter your password again."
+
+  utter_pw_not_validated_length:
+    - text: "Password too short (recommended length: >=8)"
+
+  utter_email_not_valid:
+    - text: "Not a valid email address. Try again!"

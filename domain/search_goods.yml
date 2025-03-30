@@ -1,0 +1,14 @@
+version: "3.1"
+
+actions:
+  - search_goods
+
+slots:
+  search_query:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_search_query:
+    - text: What goods are you looking for?

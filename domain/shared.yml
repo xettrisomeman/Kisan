@@ -1,0 +1,25 @@
+version: "3.1"
+
+actions:
+  - check_logged_in
+
+slots:
+  return_value:
+    type: any
+    mappings:
+      - type: controlled
+
+  logged_in:
+    type: bool
+    mappings:
+      - type: controlled
+
+responses:
+  utter_not_logged_in:
+    - text: "You are not logged in to perform the action."
+  utter_already_logged_in:
+    - text: "You are already logged in as {add_user_email_login}"
+  utter_ask_add_user_email:
+    - text: "What is your email?"
+  utter_ask_add_user_password:
+    - text: "Please enter your password."

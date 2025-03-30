@@ -1,0 +1,33 @@
+version: "3.1"
+
+actions:
+  - action_show_list_goods
+  - action_good_detail
+
+slots:
+  show_select:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  which_good_to_show:
+    type: any
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_show_select:
+    - text: Do you want to select goods?
+      buttons:
+        - payload: "/SetSlots(show_select=true)"
+          title: Yes
+        - payload: "/SetSlots(show_select=false)"
+          title: No, cancel
+
+  utter_ask_which_good_to_show:
+    - text: Write order of the good you want to select.
+  utter_show_select_cancelled:
+    - text: Selection of good is cancelled.
+
+  utter_error_select_goods:
+    - text: You cannot select goods.

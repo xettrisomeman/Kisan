@@ -1,0 +1,44 @@
+flows:
+  add_good:
+    description: add a good to goods
+    name: add a good
+    steps:
+      - action: check_logged_in
+        next:
+          - if: slots.logged_in
+            then:
+              - collect: "add_good_name"
+                description: "a good name to be added"
+                next: add_good_name
+          - else:
+              - action: utter_not_logged_in
+                next: END
+      - id: add_good_name
+        collect: add_good_name
+        description: "name of the good"
+      - collect: "add_good_description"
+        description: "a description of good"
+      - collect: "add_good_price"
+        description: "a price of the good"
+      - collect: "add_good_quantity"
+        description: "how much of quantity of goods to add"
+      - collect: "add_good_quantity_scale"
+        description: "scale of the good quantity"
+      - collect: "add_good_confirmation"
+        ask_before_filling: true
+        next:
+          - if: "slots.add_good_confirmation is not true"
+            then:
+              - action: utter_good_cancelled
+                next: END
+          - else: add_good_id_2
+      - id: add_good_id_2
+        action: add_good
+        next:
+          - if: slots.return_value = 'added'
+            then:
+              - action: utter_good_added
+                next: END
+          - else:
+              - action: utter_good_already_exists
+                next: END

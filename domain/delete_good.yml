@@ -1,0 +1,27 @@
+version: "3.1"
+
+actions:
+  - action_delete_good
+  - action_can_be_deleted
+
+slots:
+  good_delete_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  can_be_deleted:
+    type: bool
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_good_delete_confirmation:
+    - text: Are you sure to delete?
+      buttons:
+        - payload: "/SetSlots(good_delete_confirmation=false)"
+          title: No, cancel
+        - payload: "/SetSlots(good_delete_confirmation=true)"
+          title: Yes
+  utter_delete_cancelled:
+    - text: Good Delete Cancelled!

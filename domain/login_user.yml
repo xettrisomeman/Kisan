@@ -1,0 +1,42 @@
+actions:
+  - action_login_user
+
+slots:
+  user_login_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  add_user_email_login:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_user_password_login:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_user_login_confirmation:
+    - text: Sure to login?
+      buttons:
+        - payload: "/SetSlots(user_login_confirmation=true)"
+          title: Yes
+        - payload: "/SetSlots(user_login_confirmation=false)"
+          title: No, cancel!
+
+  utter_login_cancelled:
+    - text: "Okay, your login is cancelled."
+
+  utter_login_done:
+    - text: "Hey! You are logged in as {add_user_email_login}"
+
+  utter_login_failed:
+    - text: "Email or Password does not match."
+
+  utter_ask_add_user_email_login:
+    - text: "What is your email?"
+
+  utter_ask_add_user_password_login:
+    - text: "Please enter your password."

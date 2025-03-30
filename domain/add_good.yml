@@ -1,0 +1,63 @@
+version: "3.1"
+
+actions:
+  - add_good
+
+slots:
+  add_good_confirmation:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  add_good_name:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_good_description:
+    type: text
+    mappings:
+      - type: from_llm
+
+  add_good_price:
+    type: float
+    mappings:
+      - type: from_llm
+
+  add_good_quantity:
+    type: any
+    mappings:
+      - type: from_llm
+
+  add_good_quantity_scale:
+    type: any
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_add_good_confirmation:
+    - text: Do you want to add {add_good_name} to listings?
+      buttons:
+        - payload: "/SetSlots(add_good_confirmation=true)"
+          title: Yes
+        - payload: "/SetSlots(add_good_confirmation=false)"
+          title: No, cancel
+
+  utter_ask_add_good_description:
+    - text: What's the description of the good you want to add?
+  utter_ask_add_good_name:
+    - text: What's the name of the good you want to add?
+  utter_ask_add_good_price:
+    - text: "How much should the good cost?"
+  utter_ask_add_good_quantity:
+    - text: "How many quantity should be listed?"
+  utter_ask_add_good_quantity_scale:
+    - text: "Unit of measurement (e.g., 'kg', 'lb', 'unit')"
+  utter_good_cancelled:
+    - text: "Okay, I am cancelling this adding of a good."
+  utter_good_already_exists:
+    - text: "There's already a good with that name in your listings."
+  utter_good_added:
+    - text: "{add_good_name} added successfully."
+  utter_ask_for_login:
+    - text: "You have to be logged in to perform the action."

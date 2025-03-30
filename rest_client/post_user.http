@@ -1,0 +1,106 @@
+### Register User (POST Request)
+POST http://localhost:8000/auth/register
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword123",
+    "location": "Texas",
+    "interests": "Organic farming"
+}
+###
+
+
+POST http://127.0.0.1:8000/goods/add?email=johndoe@example.com HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Fresh Apples",
+  "description": "Delicious green apples",
+  "price": 1.5,
+  "quantity": 100,
+  "quantity_scale": "kg"
+}
+
+###
+
+POST http://localhost:8000/auth/register
+Content-Type: application/json
+
+{
+    "name": "Saun Doe",
+    "email": "saundoe@example.com",
+    "password": "securepassword123",
+    "location": "Texas",
+    "interests": "Buying Leafy Vegetables"
+}
+
+###
+
+POST http://127.0.0.1:8000/goods/add?email=saundoe@example.com HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Cabbage",
+  "description": "Homegrown without pesticides. Juicy.",
+  "price": 3,
+  "quantity": 200,
+  "quantity_scale": "dozens"
+}
+
+###
+
+GET http://localhost:8000/goods/show
+
+###
+GET http://localhost:8000/goods/detail/1
+
+###
+POST http://localhost:8000/goods/delete?idx=1
+
+
+###
+PUT http://localhost:8000/goods/edit?idx=1&email=johndoe@example.com
+Content-Type: application/json
+
+{
+  "price": 3.5,
+  "quantity": 125
+}
+
+###
+POST http://localhost:8000/order/buy
+Content-Type: application/json
+
+{
+  "quantity": 100,
+  "seller_email": "johndoe@example.com",
+  "buyer_email": "saundoe@example.com",
+  "idx": 1
+}
+
+###
+PUT http://localhost:8000/order/accept/1?seller_email=johndoe@example.com
+
+###
+DELETE http://localhost:8000/order/cancel/buy/1?email=johndoe@example.com
+
+###
+DELETE http://localhost:8000/order/cancel/buy/1?email=saundoe@example.com
+
+###
+GET http://localhost:8000/order/show/buy_requests/pending?buyer_email=saundoe@example.com
+
+###
+GET http://localhost:8000/order/show/incoming_requests/pending?seller_email=johndoe@example.com
+
+
+###
+GET http://localhost:8000/auth/me?email=johndoe@example.com
+
+### 
+GET http://localhost:8000/order/show/history?email=saundoe@example.com
+
+###
+GET http://localhost:8000/order/show/history?email=johndoe@example.com

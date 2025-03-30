@@ -1,0 +1,25 @@
+version: "3.1"
+
+# actions:
+#   - check_logged_in
+
+slots:
+  user_logout:
+    type: bool
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_user_logout:
+    - text: Sure to logout?
+      buttons:
+        - payload: "/SetSlots(user_logout=false)"
+          title: No, cancel
+        - payload: "/SetSlots(user_logout=true)"
+          title: Yes
+
+  utter_user_is_not_logged_in:
+    - text: You are not logged in!
+
+  utter_user_logged_out:
+    - text: You have been logged out.

@@ -1,0 +1,29 @@
+flows:
+  list_goods:
+    name: list goods
+    description: show the good list
+    persisted_slots:
+      - which_good_to_show
+    steps:
+      - set_slots:
+          - which_good_to_show: null
+      - action: action_show_list_goods
+        next:
+          - if: slots.logged_in
+            then:
+              - collect: show_select
+                description: check if user wants to select goods or not
+                ask_before_filling: true
+                next:
+                  - if: slots.show_select
+                    then:
+                      - collect: which_good_to_show
+                        description: which good to show detail? all will be mapped to id, first->1, second->2 and so on.
+                      - action: action_good_detail
+                        next: END
+                  - else:
+                      - action: utter_show_select_cancelled
+                        next: END
+          - else:
+              - action: utter_error_select_goods
+                next: END

@@ -1,0 +1,91 @@
+{"messages": [{"role": "User", "content": "Show me all users."}, {"role": "Chatbot", "content": "SELECT * FROM users;"}]}
+{"messages": [{"role": "User", "content": "Find all goods with a price greater than 10."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE price > 10;"}]}
+{"messages": [{"role": "User", "content": "List the names and emails of all users."}, {"role": "Chatbot", "content": "SELECT name, email FROM users;"}]}
+{"messages": [{"role": "User", "content": "Get the names of all goods sold by the user with ID 5."}, {"role": "Chatbot", "content": "SELECT g.name FROM goods g WHERE g.farmer_id = 5;"}]}
+{"messages": [{"role": "User", "content": "Show me the goods that have a quantity less than 5."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE quantity < 5;"}]}
+{"messages": [{"role": "User", "content": "Find users located in 'Kathmandu'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location = 'Kathmandu';"}]}
+{"messages": [{"role": "User", "content": "List goods ordered by their price in descending order."}, {"role": "Chatbot", "content": "SELECT * FROM goods ORDER BY price DESC;"}]}
+{"messages": [{"role": "User", "content": "Get the names of users whose interests include 'organic food'."}, {"role": "Chatbot", "content": "SELECT name FROM users WHERE interests LIKE '%organic food%';"}]}
+{"messages": [{"role": "User", "content": "Show the description and price of all goods."}, {"role": "Chatbot", "content": "SELECT description, price FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Find the most recently updated goods."}, {"role": "Chatbot", "content": "SELECT * FROM goods ORDER BY updated_at DESC LIMIT 1;"}]}
+{"messages": [{"role": "User", "content": "Count the total number of users."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM users;"}]}
+{"messages": [{"role": "User", "content": "Find goods with 'fresh' in their name."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE name LIKE '%fresh%';"}]}
+{"messages": [{"role": "User", "content": "List users whose name starts with 'A'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE name LIKE 'A%';"}]}
+{"messages": [{"role": "User", "content": "Get the average price of all goods."}, {"role": "Chatbot", "content": "SELECT AVG(price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show goods that were created in the year 2024."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE strftime('%Y', created_at) = '2024';"}]}
+{"messages": [{"role": "User", "content": "Find users who have an email address ending with '.com'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE email LIKE '%.com';"}]}
+{"messages": [{"role": "User", "content": "List the names of goods with a quantity scale of 'kg'."}, {"role": "Chatbot", "content": "SELECT name FROM goods WHERE quantity_scale = 'kg';"}]}
+{"messages": [{"role": "User", "content": "Get the maximum price among all goods."}, {"role": "Chatbot", "content": "SELECT MAX(price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show users whose location is either 'Kathmandu' or 'Pokhara'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location IN ('Kathmandu', 'Pokhara');"}]}
+{"messages": [{"role": "User", "content": "Find goods with a price between 5 and 15."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE price BETWEEN 5 AND 15;"}]}
+{"messages": [{"role": "User", "content": "List the names and locations of users, ordered by location."}, {"role": "Chatbot", "content": "SELECT name, location FROM users ORDER BY location;"}]}
+{"messages": [{"role": "User", "content": "Get the minimum price among all goods."}, {"role": "Chatbot", "content": "SELECT MIN(price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show the names of goods and their corresponding farmer's names."}, {"role": "Chatbot", "content": "SELECT g.name, u.name FROM goods g JOIN users u ON g.farmer_id = u.id;"}]}
+{"messages": [{"role": "User", "content": "Find users who have listed more than 2 goods."}, {"role": "Chatbot", "content": "SELECT u.id, u.name FROM users u JOIN goods g ON u.id = g.farmer_id GROUP BY u.id HAVING COUNT(g.id) > 2;"}]}
+{"messages": [{"role": "User", "content": "List goods that have a description."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE description IS NOT NULL;"}]}
+{"messages": [{"role": "User", "content": "Get the total quantity of all goods."}, {"role": "Chatbot", "content": "SELECT SUM(quantity) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show users who have not specified any interests."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE interests IS NULL;"}]}
+{"messages": [{"role": "User", "content": "Find the names of goods that have been updated in the last month."}, {"role": "Chatbot", "content": "SELECT name FROM goods WHERE updated_at >= date('now', '-1 month');"}]}
+{"messages": [{"role": "User", "content": "List users whose email contains 'gmail'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE email LIKE '%gmail%';"}]}
+{"messages": [{"role": "User", "content": "Get the average previous price of all goods."}, {"role": "Chatbot", "content": "SELECT AVG(previous_price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show goods with a quantity greater than or equal to 10."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE quantity >= 10;"}]}
+{"messages": [{"role": "User", "content": "Find users whose name includes a space."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE name LIKE '% %';"}]}
+{"messages": [{"role": "User", "content": "List the names of goods created on '2024-05-15'."}, {"role": "Chatbot", "content": "SELECT name FROM goods WHERE DATE(created_at) = '2024-05-15';"}]}
+{"messages": [{"role": "User", "content": "Get the number of goods for each farmer."}, {"role": "Chatbot", "content": "SELECT u.name, COUNT(g.id) FROM users u LEFT JOIN goods g ON u.id = g.farmer_id GROUP BY u.id;"}]}
+{"messages": [{"role": "User", "content": "Show goods with a price less than 5."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE price < 5;"}]}
+{"messages": [{"role": "User", "content": "Find users whose location is not 'Kathmandu'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location != 'Kathmandu';"}]}
+{"messages": [{"role": "User", "content": "List the names of goods and their prices, ordered by name."}, {"role": "Chatbot", "content": "SELECT name, price FROM goods ORDER BY name;"}]}
+{"messages": [{"role": "User", "content": "Get the number of users with specified interests."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM users WHERE interests IS NOT NULL;"}]}
+{"messages": [{"role": "User", "content": "Show the details of the good with ID 10."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE id = 10;"}]}
+{"messages": [{"role": "User", "content": "Find users whose name ends with 'i'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE name LIKE '%i';"}]}
+{"messages": [{"role": "User", "content": "List goods with a quantity scale of 'piece'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE quantity_scale = 'piece';"}]}
+{"messages": [{"role": "User", "content": "Get the average quantity of all goods."}, {"role": "Chatbot", "content": "SELECT AVG(quantity) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show users who have 'cooking' in their interests."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE interests LIKE '%cooking%';"}]}
+{"messages": [{"role": "User", "content": "Find goods that were updated today."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE DATE(updated_at) = DATE('now');"}]}
+{"messages": [{"role": "User", "content": "List the names of users whose email does not contain 'gmail'."}, {"role": "Chatbot", "content": "SELECT name FROM users WHERE email NOT LIKE '%gmail%';"}]}
+{"messages": [{"role": "User", "content": "Get the total quantity of goods with a quantity scale of 'kg'."}, {"role": "Chatbot", "content": "SELECT SUM(quantity) FROM goods WHERE quantity_scale = 'kg';"}]}
+{"messages": [{"role": "User", "content": "Show goods with a previous price greater than 20."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE previous_price > 20;"}]}
+{"messages": [{"role": "User", "content": "Find users whose location is 'Bhaktapur'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location = 'Bhaktapur';"}]}
+{"messages": [{"role": "User", "content": "List the names of goods and their creation dates."}, {"role": "Chatbot", "content": "SELECT name, created_at FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Get the number of goods with a price greater than 10."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM goods WHERE price > 10;"}]}
+{"messages": [{"role": "User", "content": "Show users whose interests are exactly 'reading'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE interests = 'reading';"}]}
+{"messages": [{"role": "User", "content": "Find goods that have a description containing 'organic'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE description LIKE '%organic%';"}]}
+{"messages": [{"role": "User", "content": "List the emails of users whose name starts with 'J'."}, {"role": "Chatbot", "content": "SELECT email FROM users WHERE name LIKE 'J%';"}]}
+{"messages": [{"role": "User", "content": "Get the maximum quantity among all goods."}, {"role": "Chatbot", "content": "SELECT MAX(quantity) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show goods that were created before '2024-01-01'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE created_at < '2024-01-01';"}]}
+{"messages": [{"role": "User", "content": "Find users who have an interest in both 'hiking' and 'camping'."}, {"role": "Chatbot", "content": "SELECT id, name, email, hashed_password, location, interests FROM users WHERE interests LIKE '%hiking%' AND interests LIKE '%camping%';"}]}
+{"messages": [{"role": "User", "content": "List the names of goods with a price less than or equal to 7."}, {"role": "Chatbot", "content": "SELECT name FROM goods WHERE price <= 7;"}]}
+{"messages": [{"role": "User", "content": "Get the minimum quantity among all goods."}, {"role": "Chatbot", "content": "SELECT MIN(quantity) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show users whose location is not specified."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location IS NULL;"}]}
+{"messages": [{"role": "User", "content": "Find goods with a name containing 'apple'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE name LIKE '%apple%';"}]}
+{"messages": [{"role": "User", "content": "List the hashed passwords of all users."}, {"role": "Chatbot", "content": "SELECT hashed_password FROM users;"}]}
+{"messages": [{"role": "User", "content": "Get the average of previous prices for goods with quantity scale 'kg'."}, {"role": "Chatbot", "content": "SELECT AVG(previous_price) FROM goods WHERE quantity_scale = 'kg';"}]}
+{"messages": [{"role": "User", "content": "Show goods that were updated in the year 2023."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE strftime('%Y', updated_at) = '2023';"}]}
+{"messages": [{"role": "User", "content": "Find users who have listed goods with a price greater than 100."}, {"role": "Chatbot", "content": "SELECT DISTINCT u.id, u.name FROM users u JOIN goods g ON u.id = g.farmer_id WHERE g.price > 100;"}]}
+{"messages": [{"role": "User", "content": "List the descriptions of all goods."}, {"role": "Chatbot", "content": "SELECT description FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Get the total number of goods with a quantity less than 10."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM goods WHERE quantity < 10;"}]}
+{"messages": [{"role": "User", "content": "Show users whose email does not contain a dot ('.')."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE email NOT LIKE '%.%';"}]}
+{"messages": [{"role": "User", "content": "Find goods with a quantity scale other than 'kg' or 'piece'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE quantity_scale NOT IN ('kg', 'piece');"}]}
+{"messages": [{"role": "User", "content": "List the names of users whose location is 'Lalitpur'."}, {"role": "Chatbot", "content": "SELECT name FROM users WHERE location = 'Lalitpur';"}]}
+{"messages": [{"role": "User", "content": "Get the maximum value of (price - previous_price) for all goods."}, {"role": "Chatbot", "content": "SELECT MAX(price - previous_price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show goods that were created in the last week."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE created_at >= date('now', '-7 days');"}]}
+{"messages": [{"role": "User", "content": "Find users who have an empty string as their interests."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE interests = '';"}]}
+{"messages": [{"role": "User", "content": "List the prices of all goods in ascending order."}, {"role": "Chatbot", "content": "SELECT price FROM goods ORDER BY price ASC;"}]}
+{"messages": [{"role": "User", "content": "Get the minimum value of (price - previous_price) for all goods."}, {"role": "Chatbot", "content": "SELECT MIN(price - previous_price) FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Show users whose name contains 'an'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE name LIKE '%an%';"}]}
+{"messages": [{"role": "User", "content": "Find goods with a description that is NULL."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE description IS NULL;"}]}
+{"messages": [{"role": "User", "content": "List the quantity and quantity scale of all goods."}, {"role": "Chatbot", "content": "SELECT quantity, quantity_scale FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Get the number of users whose name has more than 5 characters."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM users WHERE LENGTH(name) > 5;"}]}
+{"messages": [{"role": "User", "content": "Show goods that were updated before '2023-12-31'."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE updated_at < '2023-12-31';"}]}
+{"messages": [{"role": "User", "content": "Find users whose email starts with 'test'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE email LIKE 'test%';"}]}
+{"messages": [{"role": "User", "content": "List the created_at and updated_at timestamps for all goods."}, {"role": "Chatbot", "content": "SELECT created_at, updated_at FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Get the average price of goods with quantity greater than 0."}, {"role": "Chatbot", "content": "SELECT AVG(price) FROM goods WHERE quantity > 0;"}]}
+{"messages": [{"role": "User", "content": "Show users whose location is neither 'Kathmandu' nor 'Bhaktapur'."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE location NOT IN ('Kathmandu', 'Bhaktapur');"}]}
+{"messages": [{"role": "User", "content": "Find goods with a previous price equal to 0."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE previous_price = 0;"}]}
+{"messages": [{"role": "User", "content": "List the names of users whose email ends with '.org'."}, {"role": "Chatbot", "content": "SELECT name FROM users WHERE email LIKE '%.org';"}]}
+{"messages": [{"role": "User", "content": "Get the total quantity of goods with a price less than 20."}, {"role": "Chatbot", "content": "SELECT SUM(quantity) FROM goods WHERE price < 20;"}]}
+{"messages": [{"role": "User", "content": "Show goods with a name that has exactly 5 characters."}, {"role": "Chatbot", "content": "SELECT * FROM goods WHERE LENGTH(name) = 5;"}]}
+{"messages": [{"role": "User", "content": "Find users whose interests contain only one word."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE interests NOT LIKE '% %' AND interests IS NOT NULL AND interests != '';"}]}
+{"messages": [{"role": "User", "content": "List the farmer IDs of all goods."}, {"role": "Chatbot", "content": "SELECT farmer_id FROM goods;"}]}
+{"messages": [{"role": "User", "content": "Get the number of goods that have a previous price greater than their current price."}, {"role": "Chatbot", "content": "SELECT COUNT(*) FROM goods WHERE previous_price > price;"}]}
+{"messages": [{"role": "User", "content": "Show users whose name contains a digit."}, {"role": "Chatbot", "content": "SELECT * FROM users WHERE name LIKE '%[0-9]%';"}]}

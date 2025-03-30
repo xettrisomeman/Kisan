@@ -1,0 +1,12 @@
+flows:
+  search_goods:
+    name: search goods
+    description: |
+      Search goods by filter 
+      name (str), description (str), quantity (int), price (float),
+    steps:
+      - collect: search_query
+        description: |
+          Take user query change the search_query to sql query
+          if asked to get other than goods return None.
+      - action: search_goods

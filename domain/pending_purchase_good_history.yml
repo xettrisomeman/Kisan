@@ -1,0 +1,30 @@
+version: "3.1"
+
+actions:
+  - show_pending_purchase_good_history
+  - action_cancel_pending_order
+
+slots:
+  cancel_pending_order:
+    type: bool
+    mappings:
+      - type: from_llm
+
+  which_good_to_cancel:
+    type: text
+    mappings:
+      - type: from_llm
+
+responses:
+  utter_ask_cancel_pending_order:
+    - text: Do you want to cancel the order?
+      buttons:
+        - payload: "/SetSlots(cancel_pending_order=true)"
+          title: Yes, cancel
+        - payload: "/SetSlots(cancel_pending_order=false)"
+          title: No
+  utter_ask_which_good_to_cancel:
+    - text: which good to cancel? Write ordername.
+
+  utter_good_pending_cancelled:
+    - text: Stopped good cancellation.

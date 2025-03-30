@@ -1,0 +1,22 @@
+flows:
+  pending_incoming_order_good_history:
+    description: check incoming order history
+    name: incoming order
+    steps:
+      - action: action_show_pending_incoming_order_history
+        next:
+          - if: slots.logged_in
+            then:
+              - collect: cancel_incoming_order
+                ask_before_filling: true
+                next:
+                  - if: slots.cancel_incoming_order is true
+                    then:
+                      - collect: which_order_to_cancel
+                        description: which order to cancel? all will be mapped to id, first->1, second->2 and so on.
+                      - action: action_cancel_incoming_order
+                        next: END
+                  - else:
+                      - action: utter_order_pending_cancelled
+                        next: END
+          - else: END

@@ -1,0 +1,23 @@
+flows:
+  buy_good:
+    description: buy goods
+    name: buy goods
+    steps:
+      - action: action_can_be_bought
+        next:
+          - if: slots.can_be_bought
+            then: goods_buy_id
+          - else: END
+      - id: goods_buy_id
+        collect: good_buy_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.good_buy_confirmation is true
+            then:
+              - collect: quantity_to_buy
+                description: quantities to buy
+              - action: action_buy_good
+              - link: list_goods
+          - else:
+              - action: utter_buy_cancelled
+              - link: list_goods

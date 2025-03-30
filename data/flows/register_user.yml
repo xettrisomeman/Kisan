@@ -1,0 +1,97 @@
+flows:
+  register_user:
+    description: "Register a new user to the database"
+    name: "Register a new user"
+    block_digressions: true
+    steps:
+      - action: check_logged_in
+        next:
+          - if: slots.logged_in
+            then:
+              - action: utter_already_logged_in
+                next: END
+          - else: user_register_name
+
+      - id: user_register_name
+        collect: add_user_name
+        description: "Username of the user"
+        next: user_register_email_id
+
+      - id: user_register_email_id
+        collect: add_user_email
+        description: "Email of the user"
+        next: validate_email_id
+
+      - id: validate_email_id
+        action: validate_email
+        next:
+          - if: slots.valid_email
+            then: add_location_id
+          - else:
+              - action: utter_email_not_valid
+              - set_slots:
+                  - add_user_email: null
+                next: user_register_email_id
+
+      - id: add_location_id
+        collect: add_user_location
+        description: "Location of the user"
+        next: add_user_interests
+
+      - id: add_user_interests
+        collect: add_user_interests
+        description: "Interests of the user / reason to join"
+        next: password_manager
+
+      - id: password_manager
+        collect: add_user_password
+        description: "Password of the user"
+        next: validate_password_length_id
+
+      - id: validate_password_length_id
+        action: validate_password_length
+        next:
+          - if: slots.pw_validated_length
+            then: add_user_password_confirmation_id
+          - else:
+              - action: utter_pw_not_validated_length
+              - set_slots:
+                  - add_user_password: null
+                next: password_manager
+
+      - id: add_user_password_confirmation_id
+        collect: add_user_password_confirmation
+        description: "Password confirmation"
+        next: validate_password_confirmation
+
+      - id: validate_password_confirmation
+        action: validate_two_password
+        next:
+          - if: slots.pw_validated
+            then: user_register_confirm_id
+          - else:
+              - action: utter_pw_not_validated
+              - set_slots:
+                  - add_user_password_confirmation: null
+                next: password_manager
+
+      - id: user_register_confirm_id
+        collect: user_register_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.user_register_confirmation
+            then: register_user_id
+          - else:
+              - action: utter_register_cancelled
+                next: END
+
+      - id: register_user_id
+        action: register_user
+        next:
+          - if: slots.return_value = 'success'
+            then:
+              - action: utter_register_done
+                next: END
+          - else:
+              - action: utter_user_already_exists
+                next: END

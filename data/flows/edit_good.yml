@@ -1,0 +1,48 @@
+flows:
+  edit_good:
+    name: edit good
+    description: edit a particular good
+    steps:
+      - action: action_can_be_edited
+        next:
+          - if: slots.can_be_edited
+            then: good_edit_confirmation_id
+          - else: END
+      - id: good_edit_confirmation_id
+        collect: good_edit_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.good_edit_confirmation is true
+            then:
+              - collect: change_quantity_confirmation
+                ask_before_filling: true
+                next:
+                  - if: slots.change_quantity_confirmation is true
+                    then:
+                      - collect: change_quantity
+                        description: quantity to change
+                        next: price_confirmation_id
+                  - else: price_confirmation_id
+          - else: END
+
+      - id: price_confirmation_id
+        collect: price_confirmation
+        ask_before_filling: true
+        next:
+          - if: slots.price_confirmation is true
+            then:
+              - collect: new_price
+                description: price to change
+                next: action_edit_good_id
+          - else: action_edit_good_id
+
+      - id: action_edit_good_id
+        action: action_edit_good
+        next:
+          - if: slots.good_updated = 'true'
+            then:
+              - action: utter_good_updated
+                next: END
+          - else:
+              - action: utter_good_cannot_be_updated
+                next: END
