@@ -129,8 +129,6 @@ celerybeat.pid
 
 # Environments
 # .env
-.rasa/
-models/
 .venv
 env/
 venv/
@@ -174,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# custom
+app.db
+.rasa/
+models/

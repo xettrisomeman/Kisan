@@ -61,7 +61,7 @@ DELETE http://localhost:8000/goods/delete?idx=1&email=johndoe@example.com
 
 
 ###
-PUT http://localhost:8000/goods/edit?idx=1&email=johndoe@example.com
+PUT http://localhost:8000/goods/edit?idx=1&email=saundoe@example.com
 Content-Type: application/json
 
 {
@@ -74,7 +74,7 @@ POST http://localhost:8000/order/buy
 Content-Type: application/json
 
 {
-  "quantity": 100,
+  "quantity": 120,
   "seller_email": "johndoe@example.com",
   "buyer_email": "saundoe@example.com",
   "idx": 1

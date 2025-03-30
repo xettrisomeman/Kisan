@@ -132,6 +132,8 @@ def accept_buy_order(
         seller_email=seller.email,
         created_at=datetime.utcnow(),
     )
+    if good.quantity == order_item.quantity:
+        db.delete(good)
 
     db.add(seller_history)
     db.add(buyer_history)

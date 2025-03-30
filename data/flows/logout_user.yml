@@ -19,7 +19,7 @@ flows:
             then:
               - action: utter_user_logged_out
               - set_slots:
-                  - add_user_email: null
+                  - add_user_email_login: null
                   - logged_in: "false"
                 next: END
           - else: END

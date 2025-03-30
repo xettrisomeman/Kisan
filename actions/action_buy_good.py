@@ -22,21 +22,24 @@ class ActionBuyGood(Action):
         res_detail = httpx.get(DETAIL_GOOD_URL.format(id=int(idx))).json()
         seller_email = res_detail["farmer"]["email"]
 
-        try:
-            res_buy = httpx.post(
-                BUY_GOODS_URL,
-                json={
-                    "buyer_email": current_user,
-                    "seller_email": seller_email,
-                    "idx": idx,
-                    "quantity": quantity,
-                },
-            ).json()
+        res = httpx.post(
+            BUY_GOODS_URL,
+            json={
+                "buyer_email": current_user,
+                "seller_email": seller_email,
+                "idx": idx,
+                "quantity": quantity,
+            },
+        )
+        if res.status_code == 201:
+            res_buy = res.json()
             dispatcher.utter_message(
-                text=f"You have succesfully bought {quantity} {res_detail['quantity_scale']} from {res_buy['name']}"
+                text=f"You have succesfully bought {quantity} {res_detail['quantity_scale']} of {res_buy['name']}"
             )
-        except Exception as e:
-            dispatcher.utter_message(text=f"{e}")
+        else:
+            dispatcher.utter_message(
+                text=f"Cannot buy {res_detail['name']}. Available quantity: {res_detail['quantity']}"
+            )
 
 
 class ActionCanBeBought(Action):

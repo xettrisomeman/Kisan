@@ -11,5 +11,5 @@ class ActionSessionStart(Action):
         self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(
-            text="Welcome to Annadata. \n Commands: list goods, login, register, buy history"
+            text="Welcome to Annadata. \n Commands: list goods, login, register, recent activities, pending history, incoming history, delete, edit."
         )

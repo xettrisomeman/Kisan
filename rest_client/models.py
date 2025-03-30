@@ -93,6 +93,7 @@ class OrderRequest(Base):
     name: Mapped[str] = mapped_column(String, nullable=False)
     buyer_email: Mapped[str] = mapped_column(String(100), nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False)
+    price: Mapped[float] = mapped_column(Float, nullable=False)
     subtotal: Mapped[float] = mapped_column(Float, nullable=False)
     status: Mapped[str] = mapped_column(
         String(25),

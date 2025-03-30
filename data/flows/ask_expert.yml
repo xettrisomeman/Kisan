@@ -1,0 +1,18 @@
+flows:
+  ask_expert:
+    name: talk with expert
+    description: message experts about queries
+    block_digressions: true
+    steps:
+      - collect: message_to_expert
+        description: "message user want to sent to expert"
+        next:
+          - if: slots.logged_in
+            then:
+              - action: action_ask_expert
+                next: END
+          - else:
+              - collect: collect_email
+                description: "Ask users email"
+              - action: action_ask_expert
+                next: END

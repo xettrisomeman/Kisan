@@ -53,3 +53,21 @@ Get started with Rasa Pro in the browser using GitHub Codespaces.
       actions_module: "actions" # path to your actions package
     ```
    Then re-run your assistant via `rasa inspect` every time you make changes to your custom actions.
+
+
+### Commands
+  - list goods
+  - register 
+  - login
+  - add goods
+    - edit
+    - delete
+    - buy
+  - check purchase order pending
+    - cancel
+  - check incoming order
+    - accept
+  - check recent activities
+  - ask expert / message to experts
+  - check messages history
+  - logout

@@ -12,9 +12,6 @@ from models import User, Goods, History
 
 from exceptions import NotFoundException
 
-from dotenv import load_dotenv
-
-load_dotenv()
 
 router = APIRouter(prefix="/goods", tags=["goods"])
 
