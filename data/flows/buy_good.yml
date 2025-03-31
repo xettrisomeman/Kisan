@@ -12,12 +12,16 @@ flows:
         collect: good_buy_confirmation
         ask_before_filling: true
         next:
-          - if: slots.good_buy_confirmation is true
+          - if: slots.good_buy_confirmation
             then:
               - collect: quantity_to_buy
                 description: quantities to buy
               - action: action_buy_good
-              - link: list_goods
+              - set_slots:
+                  - quantity_to_buy: null
+                next: END
           - else:
               - action: utter_buy_cancelled
-              - link: list_goods
+              - set_slots:
+                  - quantity_to_buy: null
+                next: END

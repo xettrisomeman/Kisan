@@ -36,10 +36,12 @@ class ActionBuyGood(Action):
             dispatcher.utter_message(
                 text=f"You have succesfully bought {quantity} {res_detail['quantity_scale']} of {res_buy['name']}"
             )
+            return [SlotSet("quantity_to_buy", None)]
         else:
             dispatcher.utter_message(
                 text=f"Cannot buy {res_detail['name']}. Available quantity: {res_detail['quantity']}"
             )
+            return [SlotSet("quantity_to_buy", None)]
 
 
 class ActionCanBeBought(Action):

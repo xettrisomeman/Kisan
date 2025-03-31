@@ -30,6 +30,7 @@ class UserResponse(BaseModel):
 
 
 class OrderItemBase(BaseModel):
+    name: str
     quantity: int = Field(..., gt=0)
     price: float = Field(..., gt=0)
     subtotal: float = Field(..., gt=0)
@@ -54,6 +55,7 @@ class OrderItemResponse(OrderItemBase):
     id: int
     buyer_id: int
     goods_id: int
+    created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -96,3 +98,24 @@ class GoodsBuy(BaseModel):
     seller_email: str
     idx: int
     quantity: int
+
+
+class OrderRequestResponse(BaseModel):
+    id: int
+    farmer_id: int
+    goods_id: int
+    name: str
+    buyer_email: EmailStr
+    quantity: int
+    price: int
+    subtotal: float
+    status: str
+    created_at: datetime
+
+
+class MeOutput(BaseModel):
+    users: UserResponse
+    bought: Optional[List[OrderItemResponse]]
+    sold: Optional[List[OrderRequestResponse]]
+
+    model_config = ConfigDict(from_attributes=True)

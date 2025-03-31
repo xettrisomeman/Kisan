@@ -2,12 +2,12 @@ from typing import Annotated
 from fastapi import APIRouter, status, Depends, Request
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from models import User
+from models import User, OrderItem, OrderRequest
 from database import get_db
 from security import authenticate_user, get_password_hash
 
 from exceptions import UserAlreadyExists, NotFoundException
-from schema import UserResponse, UserCreate, UserLogin
+from schema import UserResponse, UserCreate, UserLogin, MeOutput
 
 # Set up the templates
 
@@ -59,7 +59,19 @@ def login(
     return user
 
 
-@router.get("/me")
+@router.get("/me", response_model=MeOutput)
 def profile(request: Request, db: Annotated[Session, Depends(get_db)], email: str):
     user = db.scalars(select(User).where(User.email == email)).first()
-    return user
+    orderrequest = db.scalars(
+        select(OrderRequest).where(
+            OrderRequest.farmer_id == user.id, OrderRequest.status == "accepted"
+        )
+    )
+
+    orderitem = db.scalars(
+        select(OrderItem).where(
+            OrderItem.buyer_id == user.id, OrderItem.status == "accepted"
+        )
+    )
+
+    return {"users": user, "bought": orderitem, "sold": orderrequest}

@@ -56,7 +56,7 @@ model_groups:
         model: command-r-plus-04-2024
         temperatue: 0.0
         timeout: 7
-        max_tokens: 1024
+        max_tokens: 384
   - id: cohere_embedding_model
     models:
       - provider: cohere

@@ -8,7 +8,6 @@ from schema import GoodsBuy
 from database import get_db
 from models import User, Goods, OrderItem, OrderRequest, History
 
-from exceptions import NotFoundException
 
 router = APIRouter(prefix="/order", tags=["order"])
 
@@ -49,6 +48,7 @@ def buy_goods(
         name=good.name,
         buyer_email=goods_buy.buyer_email,
         quantity=goods_buy.quantity,
+        price=good.price,
         subtotal=total_price,
         status="pending",
     )

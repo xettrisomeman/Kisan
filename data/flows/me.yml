@@ -1,0 +1,7 @@
+flows:
+  action_show_me:
+    name: show_me
+    description: show information about current user
+    steps:
+      - action: action_show_me
+        next: END

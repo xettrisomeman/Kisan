@@ -1,9 +1,9 @@
 flows:
-  pending_purchase_good_history:
-    description: pending goods purchase history
-    name: pending goods purchase history
+  pending_purchase_good_order:
+    description: check pending goods purchases
+    name: pending goods purchas
     steps:
-      - action: show_pending_purchase_good_history
+      - action: show_pending_purchase_good
         next:
           - if: slots.logged_in and slots.is_pending
             then:

@@ -4,13 +4,14 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 
-from config import INCOMING_ORDER_PENDING_HISTORY
+
 import httpx
+from config import BUY_PENDING_HISTORY
 
 
-class ActionShowPendingIncomingOrderHistory(Action):
+class ShowPendingPurchaseGood(Action):
     def name(self) -> str:
-        return "action_show_pending_incoming_order_history"
+        return "show_pending_purchase_good"
 
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
@@ -19,7 +20,7 @@ class ActionShowPendingIncomingOrderHistory(Action):
         if logged_in:
             email = tracker.get_slot("add_user_email_login")
             responses = httpx.get(
-                INCOMING_ORDER_PENDING_HISTORY, params={"seller_email": email}
+                BUY_PENDING_HISTORY, params={"buyer_email": email}
             ).json()
             if responses:
                 for idx, res in enumerate(responses[:5], start=1):
@@ -30,10 +31,10 @@ class ActionShowPendingIncomingOrderHistory(Action):
                         f"Status: {res['status']}"
                     )
                     dispatcher.utter_message(text=res_msg)
-                    return [SlotSet("is_incoming", True)]
+                    return [SlotSet("is_pending", True)]
             else:
-                dispatcher.utter_message(text="You have no incoming orders in pending.")
-                return [SlotSet("is_incoming", False)]
+                dispatcher.utter_message(text="You have no purchases in pending.")
+                return [SlotSet("is_pending", False)]
         else:
             dispatcher.utter_message(
                 text="You have to be logged in to perform the action."

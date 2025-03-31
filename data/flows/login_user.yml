@@ -16,21 +16,19 @@ flows:
 
       - id: user_login_id
         collect: add_user_email_login
-        description: "Email of the user"
-        next: user_password
+        description: "Login Email of the user"
 
-      - id: user_password
-        collect: add_user_password_login
-        description: "Password of the user"
-        next: user_login_confirmation
+      - collect: add_user_password_login
+        description: "Login Password of the user"
 
-      - id: user_login_confirmation
+      - id: user_login_confirmation_id
         collect: user_login_confirmation
         ask_before_filling: true
         next:
           - if: slots.user_login_confirmation
             then:
               - action: action_login_user
+              - noop: true
                 next:
                   - if: slots.logged_in
                     then:
@@ -40,7 +38,6 @@ flows:
                       - action: utter_login_failed
                       - set_slots:
                           - add_user_email_login: null
-                          - add_user_password_login: null
                         next: END
           - else:
               - action: utter_login_cancelled

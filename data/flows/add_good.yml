@@ -9,14 +9,12 @@ flows:
             then:
               - collect: "add_good_name"
                 description: "a good name to be added"
-                next: add_good_name
+                next: add_good_description_id
           - else:
               - action: utter_not_logged_in
                 next: END
-      - id: add_good_name
-        collect: add_good_name
-        description: "name of the good"
-      - collect: "add_good_description"
+      - id: add_good_description_id
+        collect: "add_good_description"
         description: "a description of good"
       - collect: "add_good_price"
         description: "a price of the good"

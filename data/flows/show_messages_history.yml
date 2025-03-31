@@ -2,14 +2,6 @@ flows:
   show_messages_history:
     name: show_message_histry
     description: show messages history sent to expers
-    block_digressions: true
     steps:
-      - action: check_logged_in
-        next:
-          - if: slots.logged_in
-            then:
-              - action: action_show_messages_history
-                next: END
-          - else:
-              - action: utter_not_logged_in
-                next: END
+      - action: action_show_messages_history
+        next: END

@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "messages": "Hi, i see my cow is suffering from fever. What should i do?",
+        "email": "johndoe@example.com",
+        "expert_response": null,
+        "ai_response": "I'm sorry to hear that your cow is unwell. Fever in cows can be a symptom of various conditions, and it is important to identify the underlying cause to provide effective treatment. Here are some general steps you can take while you arrange a consultation with a veterinarian:\n\n1. **Provide Comfort**: Ensure your cow is comfortable and resting in a cool, well-ventilated area. Access to shade and a gentle breeze can help regulate body temperature.\n\n2. **Hydration**: Encourage your cow to drink water frequently to prevent dehydration. If your cow is not drinking enough, consult your veterinarian about administering oral electrolytes or intravenous fluids.\n\n3. **Monitor Temperature**: Take your cow's rectal temperature regularly to monitor the fever. A temperature above the normal range (101.5\u00b0F to 102.5\u00b0F or 38.6\u00b0C to 39.2\u00b0C) indicates a fever. Contact your veterinarian if the fever persists or spikes.\n\n4. **Observe for Other Symptoms**: Take note of any other symptoms your cow may be exhibiting, such as loss of appetite, lethargy, coughing, diarrhea, or any unusual behavior. This information will be helpful when consulting with your veterinarian.\n\n5. **Consult a Veterinarian**: Contact your local veterinarian as soon as possible. They will be able to examine your cow, diagnose the cause of the fever, and provide specific treatment recommendations. Follow their instructions carefully.\n\nRemember, early intervention is crucial for the well-being of your cow. Do not delay in seeking professional veterinary advice and care."
+    }
+]

@@ -104,3 +104,10 @@ GET http://localhost:8000/order/show/history?email=saundoe@example.com
 
 ###
 GET http://localhost:8000/order/show/history?email=johndoe@example.com
+
+###
+GET http://localhost:8000/auth/me?email=johndoe@example.com
+
+###
+GET http://localhost:8000/order/show/history?email=johndoe@localhost:8000/goods/edit?idx=1&email=johndoe@example.com
+

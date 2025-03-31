@@ -13,7 +13,7 @@ flows:
         collect: good_delete_confirmation
         ask_before_filling: true
         next:
-          - if: slots.good_delete_confirmation is true
+          - if: slots.good_delete_confirmation
             then:
               - action: action_delete_good
               - set_slots:

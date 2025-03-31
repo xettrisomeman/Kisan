@@ -1,23 +1,22 @@
 flows:
   register_user:
     description: "Register a new user to the database"
-    name: "Register a new user"
     block_digressions: true
     steps:
-      - action: check_logged_in
+      - noop: true
         next:
-          - if: slots.logged_in
-            then:
-              - action: utter_already_logged_in
+          - if: not slots.logged_in
+            then: ask_credentials
+          - else:
+              - action: utter_not_logged_in
                 next: END
-          - else: user_register_name
 
-      - id: user_register_name
+      - id: ask_credentials
         collect: add_user_name
         description: "Username of the user"
-        next: user_register_email_id
+        next: ask_email
 
-      - id: user_register_email_id
+      - id: ask_email
         collect: add_user_email
         description: "Email of the user"
         next: validate_email_id
@@ -31,14 +30,14 @@ flows:
               - action: utter_email_not_valid
               - set_slots:
                   - add_user_email: null
-                next: user_register_email_id
+                next: ask_email
 
       - id: add_location_id
         collect: add_user_location
         description: "Location of the user"
-        next: add_user_interests
+        next: add_user_interests_id
 
-      - id: add_user_interests
+      - id: add_user_interests_id
         collect: add_user_interests
         description: "Interests of the user / reason to join"
         next: password_manager
@@ -62,9 +61,9 @@ flows:
       - id: add_user_password_confirmation_id
         collect: add_user_password_confirmation
         description: "Password confirmation"
-        next: validate_password_confirmation
+        next: validate_password_confirmation_id
 
-      - id: validate_password_confirmation
+      - id: validate_password_confirmation_id
         action: validate_two_password
         next:
           - if: slots.pw_validated

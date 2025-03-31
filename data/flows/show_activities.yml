@@ -1,14 +1,13 @@
 flows:
-  show_history:
-    description: history of what user did
-    name: get history or recent activities
-    block_digressions: true
+  show_activities:
+    description: collection of total user activites
+    name: show activities
     steps:
-      - noop: true
+      - action: check_logged_in
         next:
           - if: slots.logged_in
             then:
-              - action: action_show_history
+              - action: action_show_activities
                 next: END
           - else:
               - action: utter_not_logged_in

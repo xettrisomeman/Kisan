@@ -7,19 +7,19 @@ import httpx
 from config import ACCEPT_PENDING_ORDER
 
 
-class ActionAcceptPendingOrder(Action):
+class ActionAcceptIncomingOrder(Action):
     def name(self) -> str:
-        return "action_accept_pending_order"
+        return "action_accept_incoming_order"
 
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
     ) -> List[Dict[Text, Any]]:
         order_id = tracker.get_slot("which_good_to_accept")
         if order_id.isdigit():
-            buyer_email = tracker.get_slot("add_user_email_login")
+            seller_email = tracker.get_slot("add_user_email_login")
             res = httpx.put(
                 ACCEPT_PENDING_ORDER.format(order_item_id=int(order_id)),
-                params={"buyer_email": buyer_email},
+                params={"seller_email": seller_email},
             )
             if res.status_code == 200:
                 res = res.json()
